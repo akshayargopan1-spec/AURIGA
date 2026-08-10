@@ -1,0 +1,6 @@
+{
+  "name": "PeerSolve",
+  "description": "An AI-powered reciprocal peer-learning network that discovers complementary student skills and converts them into structured, measurable knowledge exchanges.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

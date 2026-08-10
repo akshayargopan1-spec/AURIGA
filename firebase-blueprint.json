@@ -1,0 +1,122 @@
+{
+  "entities": {
+    "users": {
+      "title": "Users",
+      "description": "Registered users with role (student, teacher, admin)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["student", "teacher", "admin"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "name", "role"]
+    },
+    "student_profiles": {
+      "title": "Student Profiles",
+      "description": "Student onboarding details, skills, availability, and passport metrics",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "nickname": { "type": "string" },
+        "college": { "type": "string" },
+        "course": { "type": "string" },
+        "branch": { "type": "string" },
+        "semester": { "type": "string" },
+        "canTeach": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "skill": { "type": "string" },
+              "level": { "type": "string" },
+              "verified": { "type": "boolean" },
+              "selfRating": { "type": "number" },
+              "assessmentScore": { "type": "number" },
+              "peerRating": { "type": "number" },
+              "sessionsTaught": { "type": "number" },
+              "sessionsCompleted": { "type": "number" }
+            }
+          }
+        },
+        "wantToLearn": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "skill": { "type": "string" },
+              "targetLevel": { "type": "string" },
+              "initialScore": { "type": "number" },
+              "currentScore": { "type": "number" }
+            }
+          }
+        },
+        "availableDays": { "type": "array", "items": { "type": "string" } },
+        "availableSlots": { "type": "array", "items": { "type": "string" } },
+        "learningPreferences": { "type": "array", "items": { "type": "string" } },
+        "preferredLanguage": { "type": "string" },
+        "reliabilityScore": { "type": "number" },
+        "impactMetrics": {
+          "type": "object",
+          "properties": {
+            "studentsHelped": { "type": "number" },
+            "sessionsTaught": { "type": "number" },
+            "sessionsCompleted": { "type": "number" },
+            "avgPeerRating": { "type": "number" },
+            "learningImprovements": { "type": "number" }
+          }
+        },
+        "badges": { "type": "array", "items": { "type": "string" } },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "name", "college"]
+    },
+    "sessions": {
+      "title": "Sessions",
+      "description": "Knowledge exchange sessions between peers",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string" },
+        "mentorUid": { "type": "string" },
+        "learnerUid": { "type": "string" },
+        "mentorName": { "type": "string" },
+        "learnerName": { "type": "string" },
+        "teachSkill": { "type": "string" },
+        "learnSkill": { "type": "string" },
+        "scheduledTime": { "type": "string" },
+        "durationMinutes": { "type": "number" },
+        "status": { "type": "string", "enum": ["scheduled", "in_progress", "completed", "cancelled"] },
+        "agenda": { "type": "array", "items": { "type": "object" } },
+        "quiz": { "type": "array", "items": { "type": "object" } },
+        "beforeScore": { "type": "number" },
+        "afterScore": { "type": "number" },
+        "notes": { "type": "string" },
+        "learnerFeedback": { "type": "object" },
+        "mentorFeedback": { "type": "object" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["sessionId", "mentorUid", "learnerUid", "teachSkill"]
+    },
+    "doubts": {
+      "title": "Doubts",
+      "description": "Peer questions and doubts posted in the community",
+      "type": "object",
+      "properties": {
+        "doubtId": { "type": "string" },
+        "authorUid": { "type": "string" },
+        "authorName": { "type": "string" },
+        "isAnonymous": { "type": "boolean" },
+        "category": { "type": "string" },
+        "skill": { "type": "string" },
+        "question": { "type": "string" },
+        "aiAnswer": { "type": "string" },
+        "recommendedMentors": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["doubtId", "question", "skill"]
+    }
+  }
+}
